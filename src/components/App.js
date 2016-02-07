@@ -1,4 +1,6 @@
 import React from 'react';
+import Header from './Header';
+import Footer from './Footer';
 
 import styles from './App.pcss';
 
@@ -7,14 +9,9 @@ export default class App extends React.Component {
     render() {
 
         return (
-            <div className={styles.root}>
-                <h1>
-                    <img src={require('../images/top-secret.png')} />
-                </h1>
-
+            <section className={styles.root}>
                 {this.props.children}
-
-            </div>
+            </section>
         );
     }
 }

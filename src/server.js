@@ -1,56 +1,62 @@
 import uuid from 'node-uuid';
-import { List } from 'immutable';
-
 import { createServer } from './util/server';
 import config from '../config.server';
 import webpackConfig from '../webpack.config';
+import events from './services/finnkino-event';
+import { Map } from 'immutable';
 import bodyParser from 'body-parser';
+
+const messagebird = require('messagebird')(config.messagebird);
+
+let eventCache = Map();
 
 createServer(config, webpackConfig, (app) => {
 
     app.use(bodyParser.json());
 
-    let todos = List.of(
-        {
-            id: uuid.v4(),
-            text: 'Get 100 litres of battery acid',
-            category: 0
-        },
-        {
-            id: uuid.v4(),
-            text: 'Get gardening tools',
-            category: 0
-        },
-        {
-            id: uuid.v4(),
-            text: 'Carve up the "meat"',
-            category: 0
-        },
-        {
-            id: uuid.v4(),
-            text: 'Liquidate the pieces',
-            category: 0
-        },
-        {
-            id: uuid.v4(),
-            text: 'Dump the acid in the Danube',
-            category: 1
+    app.get('/api/event/:id', function(req, res, next) {
+
+        const id = parseInt(req.params.id);
+        const cached = eventCache.get(id);
+
+        if (cached) {
+            console.log('got event from cache');
+            res.json(cached);
+            return next();
         }
-    );
 
-    app.get('/api/todo', function(req, res, next) {
+        console.log('fetching from finnkino');
 
-        setTimeout(
-            function() {
-                res.send(todos.toJS());
-            },
-            Math.random() * 300
-        );
+        events.getEvent(id)
+            .then(event => {
+                eventCache = eventCache.set(event.id, event);
+                res.json(event);
+            })
+            .catch(error => {
+                res.status(404).json({ error: 'Something failed!' });
+            })
+
     });
 
-    app.post('/api/todo', function(req, res, next) {
-        todos = List(req.body);
-        res.send(['ok']);
+    app.post('/api/sms', function(req, res, next) {
+
+        const body = req.body;
+
+        const params = {
+            originator: 'Kino-Kobros',
+            recipients: [
+                body.msisdn
+            ],
+            body: `Elokuvalippunne: ${config.server}/event/${body.eventId}/${body.ticketId}`
+        };
+
+        messagebird.messages.create(params, function (err, response) {
+            if (err) {
+                res.status(500).json(['fail'])
+            }
+            res.json(['ok']);
+        });
+
     });
 
 

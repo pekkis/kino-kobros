@@ -1,13 +1,11 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Wrapped from '../IndexPage';
-import { push } from 'react-router-redux';
+import Wrapped from '../EventPage';
 
 export default connect(
     state => ({
-
+        events: state.event.get('events')
     }),
     dispatch => bindActionCreators({
-        push
     }, dispatch)
 )(Wrapped);

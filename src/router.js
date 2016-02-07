@@ -1,26 +1,22 @@
 import React from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
-
-import { receiveTodos } from './actions/todo-actions';
+import { fetchEvent } from './actions/event-actions';
 import App from './components/container/AppContainer';
 import IndexPage from './components/container/IndexPageContainer';
-import TodoPage from './components/container/TodoPageContainer';
+import EventPage from './components/container/EventPageContainer';
+import TicketPage from './components/container/TicketPageContainer';
+import createFetchers from './util/universal';
 
 export function createRouter({ store, history }) {
 
-    function checkFetcher(nextState, replaceState, callback) {
-
-        if (!this.component.fetch) {
-            callback();
-            return;
-        }
-        this.component.fetch(store).then(callback);
-    }
+    const { fetcher, prefetcher } = createFetchers(store);
 
     function initApp(nextState, replaceState, callback) {
-        store.dispatch(receiveTodos()).then(() => {
+
+
+        //store.dispatch(receiveTodos()).then(() => {
             callback();
-        });
+        // });
     }
 
     /*
@@ -41,8 +37,9 @@ export function createRouter({ store, history }) {
     return (
         <Router history={history}>
             <Route path="/" component={App} onEnter={initApp}>
-                <IndexRoute component={IndexPage} onEnter={checkFetcher}/>
-                <Route path="todo/:uuid" component={TodoPage}/>
+                <IndexRoute component={IndexPage} onEnter={fetcher}/>
+                <Route path="event/:id" component={EventPage} onEnter={fetcher} />
+                <Route path="event/:id/:ticketId" component={TicketPage} onEnter={fetcher}/>
             </Route>
         </Router>
     );
