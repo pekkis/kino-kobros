@@ -1,3 +1,7 @@
 export default {
-    api: ''
+    api: '',
+    qrCode: {
+        size: 250,
+        level: 'H'
+    }
 };

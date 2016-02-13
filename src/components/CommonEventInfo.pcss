@@ -1,0 +1,36 @@
+.root {
+
+    table {
+        width: 100%;
+        border: 1px solid rgb(0,0,0);
+        margin: 1rem 0;
+
+        th, td {
+            padding: .30rem .25rem;
+        }
+
+        tr:first-child {
+            th, td {
+                padding-top: .5rem
+            }
+        }
+
+        tr:last-child {
+            th, td {
+                padding-bottom: .5rem
+            }
+        }
+
+        th {
+            text-align: right;
+        }
+
+        td {
+            text-align: left;
+        }
+
+        @media (max-width: 350px) {
+            font-size: 1.1rem;
+        }
+    }
+}

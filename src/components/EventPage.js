@@ -3,20 +3,25 @@ import { fetchEvent } from 'actions/event-actions';
 import Icon from 'react-fa';
 import EventInfo from './EventInfo'
 import TicketPreviews from './TicketPreviews';
+import Message from './Message';
 
 class EventPage extends React.Component {
 
     render() {
 
         const id = parseInt(this.props.params.id);
-        const { events } = this.props;
+        const { events, error } = this.props;
         const event = events.get(id);
+
+        if (error) {
+            return (
+                <Message type="error" message="Kino Kobros kaatui omaan mahdottomuuteensa." />
+            );
+        }
 
         if (!event) {
             return (
-                <section>
-                    <Icon name="cog" spin={true} size="4x" /> Kino Kobros lataileepi...
-                </section>
+                <Message type="loading" message="Kino Kobros lataa.." />
             );
         }
 

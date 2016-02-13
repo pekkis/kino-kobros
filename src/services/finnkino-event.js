@@ -30,6 +30,11 @@ export default {
 
                             const $tickets = window.$('.ticket-block');
 
+                            if ($tickets.length === 0) {
+                                return reject("Tickets not found");
+                            }
+
+
                             $tickets.each((k, tb) => {
 
                                 const $tb = window.$(tb);
@@ -60,7 +65,8 @@ export default {
 
                             const ret = {
                                 id: id,
-                                title: window.$('h2.originalTitle').text().trim(),
+                                title: window.$('h1').text().trim(),
+                                originalTitle: window.$('h2.originalTitle').text().trim(),
                                 time: $time.contents().get(0).nodeValue.trim(),
                                 date: $time.find('.showTimeDate').text().trim(),
                                 venue: {

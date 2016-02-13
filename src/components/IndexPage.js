@@ -25,7 +25,7 @@ class IndexPage extends React.Component {
                 <Header />
 
                 <p>
-                    Kino Kobros on parempi ja massaostoystävällisempi käyttöliittymä
+                    Kino Kobros on parempi ja massaostoystävällinen käyttöliittymä
                     Finnkinon e-lippuihin.
                 </p>
 
@@ -34,11 +34,16 @@ class IndexPage extends React.Component {
                 </p>
 
                 <p>
-                    <strong>OBS! </strong> Kaikkien ostosten tiedot vähintäänkin käyvät
+                    <strong>OBS! </strong> Kaikkien ostosten tiedot vähintään käyvät
                     palvelimellani, ja niiden tietoja
                     potentiaalisesti säilötään jotta voin kehittää käyttöliittymää paremmaksi.
                     Nähdäkseni käytettyjen ostosten ja lippujen numeroilla ei ole varsinaista
-                    arvoa, mutta parempi että tiedät. Jos haluat tarkkaan tietää, mitä koodi tekee, <a target="_blank" href="https://github.com/pekkis/kino-kobros">lue se läpi.</a>
+                    arvoa, mutta parempi että joka tapauksessa tiedostat asian.
+                </p>
+
+                <p>
+                    Jos haluat tarkkaan tietää, mitä koodi tekee, <a target="_blank" href="https://github.com/pekkis/kino-kobros">lue se läpi.</a>
+                    {' '}Jos et usko että palvelimellani pyörivä koodi on sama, ota ihmeessä forkki ja hostaa oma versiosi!
                 </p>
 
                 <form onSubmit={this.onSubmit}>
