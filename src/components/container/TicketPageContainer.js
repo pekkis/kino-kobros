@@ -7,7 +7,8 @@ export default connect(
     state => ({
         events: state.event.get('events'),
         smsSending: state.sms.get('sending'),
-        smsStatus: state.sms.get('status')
+        smsStatus: state.sms.get('status'),
+        error: state.event.get('error')
     }),
     dispatch => bindActionCreators({
         sendSms

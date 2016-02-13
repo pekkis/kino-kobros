@@ -1,10 +1,10 @@
 import React from 'react';
 import { fetchEvent } from 'actions/event-actions';
-import Icon from 'react-fa';
 import Ticket from './Ticket';
 import { Link } from 'react-router';
 import SmsForm from './SmsForm';
 import styles from './TicketPage.pcss';
+import Message from './Message';
 
 class TicketPage extends React.Component {
 
@@ -13,21 +13,22 @@ class TicketPage extends React.Component {
         const eventId = parseInt(this.props.params.id);
         const ticketId = this.props.params.ticketId;
 
-        const { events, sendSms, smsSending, smsStatus } = this.props;
+        const { error, events, sendSms, smsSending, smsStatus } = this.props;
         const event = events.get(eventId);
+
+        if (error) {
+            return (
+                <Message type="error" message="Kino Kobros kaatui omaan mahdottomuuteensa." />
+            );
+        }
 
         if (!event) {
             return (
-                <section>
-                    <Icon name="cog" spin={true} size="4x" /> Kino Kobros lataileepi...
-                </section>
+                <Message type="loading" message="Kino Kobros lataa.." />
             );
         }
 
         const ticket = event.tickets.find(t => t.id === ticketId);
-
-        console.log(ticketId);
-        console.log(ticket);
 
         if (!ticket) {
             return false;
