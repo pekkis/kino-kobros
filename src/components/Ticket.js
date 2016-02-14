@@ -1,8 +1,8 @@
 import React from 'react';
-import QRCode from 'qrcode.react';
 import styles from './Ticket.pcss';
-
 import TicketInfo from './TicketInfo';
+import ToiletCode from './ToiletCode';
+import QRCode from './QRCode';
 
 export default function Ticket({event, ticket, sendSms}) {
 
@@ -12,8 +12,10 @@ export default function Ticket({event, ticket, sendSms}) {
             <TicketInfo event={event} ticket={ticket} />
 
             <div className={styles.qrContainer}>
-                <QRCode value={ticket.id} size={300} />
+                <QRCode value={ticket.id} />
             </div>
+
+            <ToiletCode ticket={ticket} />
 
         </section>
     );

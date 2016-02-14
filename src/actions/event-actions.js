@@ -15,7 +15,7 @@ export function receiveEvent(event) {
 
 export function receiveEventFailed(error) {
     return {
-        type: RECEIVE_EVENT,
+        type: RECEIVE_EVENT_FAILED,
         payload: event
     };
 }
@@ -23,6 +23,10 @@ export function receiveEventFailed(error) {
 export function fetchEvent(id) {
 
     return function(dispatch, getState) {
+
+        dispatch({
+            type: FETCH_EVENT
+        });
 
         return events
             .getEvent(id)

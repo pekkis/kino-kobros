@@ -1,8 +1,6 @@
 export default {
     port: 8888,
-    messagebird: '',
+    messagebird: 'messagebird_token',
     server: 'https://kino.dr-kobros.com',
-    db: {
-        some: 'parameter',
-    }
+    api: 'https://www.finnkino.fi'
 };

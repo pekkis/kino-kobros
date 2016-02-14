@@ -160,7 +160,6 @@ const envs = {
         devtool: 'source-map',
         entry: {
             client: './src/client.js',
-            vendor: Object.keys(pkg.dependencies)
         },
 
         output: {
@@ -169,10 +168,6 @@ const envs = {
             filename: '[name].[chunkhash].js'
         },
         plugins: [
-            new webpack.optimize.CommonsChunkPlugin(
-                'vendor',
-                '[name].[chunkhash].js'
-            ),
             webpack_isomorphic_tools_plugin,
             new webpack.optimize.OccurenceOrderPlugin(),
             new ExtractTextPlugin("styles.[contenthash].css"),

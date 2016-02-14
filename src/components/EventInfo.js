@@ -1,4 +1,5 @@
 import React from 'react';
+import EventTitle from './EventTitle';
 import styles from './EventInfo.pcss';
 
 export default function EventInfo({event}) {
@@ -6,7 +7,8 @@ export default function EventInfo({event}) {
     return (
 
         <section className={styles.root}>
-            <h1>{event.title}</h1>
+
+            <EventTitle event={event} />
 
             <table>
                 <tbody>

@@ -33,7 +33,7 @@ createServer(config, webpackConfig, (app) => {
                 res.json(event);
             })
             .catch(error => {
-                res.status(404).json({ error: 'Something failed!' });
+                res.status(404).json({ error: 'Event failed!' });
             })
 
     });
