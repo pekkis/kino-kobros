@@ -61,10 +61,14 @@ export default {
                                 .text()
                                 .trim()
                                 .split(',')
-                                .map(s => s.trim())
+                                .map(s => s.trim());
+
+                            // Hi-res poster image
+                            const poster = window.$('.eventHeader img').attr('src')
+                                .replace('portrait_small', 'portrait_medium');
 
                             const ret = {
-                                id: id,
+                                id,
                                 title: window.$('h1').text().trim(),
                                 originalTitle: window.$('h2.originalTitle').text().trim(),
                                 time: $time.contents().get(0).nodeValue.trim(),
@@ -73,6 +77,7 @@ export default {
                                     theater: _theater[0],
                                     room: _theater[1],
                                 },
+                                poster,
                                 tickets
                             };
 

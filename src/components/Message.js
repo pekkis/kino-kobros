@@ -17,11 +17,11 @@ const icons = {
 export default function Message({type, message}) {
 
     const icon = icons[type];
-    const classes = cx(styles.icon, styles[type])
+    const classes = cx(styles.icon, styles[type]);
 
     return (
-        <section class={styles.root}>
+        <section className={styles.root}>
             <Icon className={classes} name={icon.name} spin={icon.spin} size="4x" /> {message}
         </section>
-    )
+    );
 }
