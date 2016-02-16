@@ -1,10 +1,8 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { browserHistory as history } from 'react-router';
-import { createStore } from './util/redux';
-import { createApp } from './util/app';
-
+import { createStore } from '@dr-kobros/react-broilerplate/lib/redux';
+import { createApp } from '@dr-kobros/react-broilerplate/lib/app';
 import * as reducers from './reducers';
 import { createRouter } from './router';
 

@@ -1,5 +1,5 @@
 import uuid from 'node-uuid';
-import { createServer } from './util/server';
+import { createServer } from '@dr-kobros/react-broilerplate/lib/server';
 import config from '../config.server';
 import webpackConfig from '../webpack.config';
 import events from './services/finnkino-event';

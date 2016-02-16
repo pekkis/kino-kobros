@@ -5,7 +5,7 @@ import App from './components/container/AppContainer';
 import IndexPage from './components/container/IndexPageContainer';
 import EventPage from './components/container/EventPageContainer';
 import TicketPage from './components/container/TicketPageContainer';
-import createFetchers from './util/universal';
+import createFetchers from '@dr-kobros/react-broilerplate/lib/universal';
 
 export function createRouter({ store, history }) {
 
